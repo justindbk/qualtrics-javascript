@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.17)  4 JAN 2019 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.17)  4 JAN 2019 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -359,23 +359,48 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 20.
 
+(/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count116
+\lst@gtempboxa=\box30
+\lst@token=\toks24
+\lst@length=\count117
+\lst@currlwidth=\dimen129
+\lst@column=\count118
+\lst@pos=\count119
+\lst@lostspace=\dimen130
+\lst@width=\dimen131
+\lst@newlines=\count120
+\lst@lineno=\count121
+\lst@maxwidth=\dimen132
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
+\c@lstnumber=\count122
+\lst@skipnumbers=\count123
+\lst@framebox=\box31
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2018/09/02 1.7 listings configuration
+))
+Package: listings 2018/09/02 1.7 (Carsten Heinz)
+
 (./QualtricsJavascript.aux)
 \openout1 = `QualtricsJavascript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -413,61 +438,61 @@ LaTeX Font Info:    ... okay on input line 28.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count116
-\scratchdimen=\dimen129
-\scratchbox=\box30
-\nofMPsegments=\count117
-\nofMParguments=\count118
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count119
-\MPscratchDim=\dimen130
-\MPnumerator=\count120
-\makeMPintoPDFobject=\count121
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count124
+\scratchdimen=\dimen133
+\scratchbox=\box32
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen134
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
+\everyMPtoPDFconversion=\toks26
 )
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring ON on input line 28.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring ON on input line 30.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count122
+\c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
 
 (./QualtricsJavascript.out) (./QualtricsJavascript.out)
 \@outlinefile=\write3
 \openout3 = `QualtricsJavascript.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+\c@lstlisting=\count131
+LaTeX Font Info:    Try loading font information for U+msa on input line 32.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 32.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<surveyflow_simple.png, id=59, 734.745pt x 418.56375pt>
-File: surveyflow_simple.png Graphic file (type png)
-<use surveyflow_simple.png>
-Package pdftex.def Info: surveyflow_simple.png  used on input line 47.
+<../surveyflow_simple.png, id=59, 734.745pt x 418.56375pt>
+File: ../surveyflow_simple.png Graphic file (type png)
+<use ../surveyflow_simple.png>
+Package pdftex.def Info: ../surveyflow_simple.png  used on input line 49.
 (pdftex.def)             Requested size: 258.00539pt x 146.9785pt.
-
-(./QualtricsJavascript.bbl [3 <./surveyflow_simple.png>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
- [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
+ [3 <../surveyflow_simple.png>] [4] (./QualtricsJavascript.bbl [5])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 117.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 117.
 
 (./QualtricsJavascript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 117.
 
 
  *File List*
@@ -532,6 +557,9 @@ refcount.sty    2016/05/16 v3.5 Data extraction from label references (HO)
 hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
  hpdftex.def    2018/09/30 v6.88a Hyperref driver for pdfTeX
 rerunfilecheck.sty    2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+listings.sty    2018/09/02 1.7 (Carsten Heinz)
+ lstmisc.sty    2018/09/02 1.7 (Carsten Heinz)
+listings.cfg    2018/09/02 1.7 listings configuration
 supp-pdf.mkii
  nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
@@ -539,21 +567,21 @@ QualtricsJavascript.out
 QualtricsJavascript.out
     umsa.fd    2013/01/14 v3.01 AMS symbols A
     umsb.fd    2013/01/14 v3.01 AMS symbols B
-surveyflow_simple.png    Graphic file (type png)
+../surveyflow_simple.png
 QualtricsJavascript.bbl
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 117.
 Package rerunfilecheck Info: File `QualtricsJavascript.out' has not changed.
 (rerunfilecheck)             Checksum: 58B5EAA4A8DE6EBC90F51B6C250DA655;397.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 117.
  ) 
 Here is how much of TeX's memory you used:
- 7434 strings out of 492639
- 106349 string characters out of 6129301
- 209225 words of memory out of 5000000
- 11193 multiletter control sequences out of 15000+600000
- 13088 words of font info for 51 fonts, out of 8000000 for 9000
+ 8765 strings out of 492639
+ 125291 string characters out of 6129301
+ 227780 words of memory out of 5000000
+ 12508 multiletter control sequences out of 15000+600000
+ 13257 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,8n,35p,1381b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -563,11 +591,12 @@ usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
 al/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on QualtricsJavascript.pdf (4 pages, 143869 bytes).
+texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on QualtricsJavascript.pdf (6 pages, 156828 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

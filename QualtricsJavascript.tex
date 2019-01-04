@@ -19,6 +19,8 @@
 \usepackage[colorlinks=true, pagebackref=false]{hyperref}
 \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
 
+\usepackage{listings} % for code examples
+
 \onehalfspacing
 
 \title{Utilizing Javascript in Qualtrics for Survey and Experimental Designs}
@@ -29,7 +31,7 @@
 \maketitle
 \section{Introduction}
 
-Experiments have undeniably increased in their use within political science in the last fifteen years \citep{druckman2006growth}. Especially frequent in this rise of experimental research is the survey experiment. Survey experiments are an effective method for exploiting random assignment to determine accurate causal effects while keeping the costs of research low and the speed with which data can be collected short \citep{mullinix2015generalizability}. Moreover, survey experiments are a research methodology that can be accessible and open to many: students and faculty with varying degrees of resources can often use convenience samples to assess experimental treatment effects without great cost.
+Experiments have undeniably increased in their use within political science in the last twenty years \citep{druckman2006growth}. Especially frequent in this rise of experimental research is the survey experiment. Survey experiments are an effective method for exploiting random assignment to determine accurate causal effects while keeping the costs of research low and the speed with which data can be collected short \citep{mullinix2015generalizability}. Moreover, survey experiments are a research methodology that can be accessible and open to many: students and faculty with varying degrees of resources can often use convenience samples to assess experimental treatment effects without great cost.
 
 Yet while survey experiments, and in particular the use of convenience samples such as Amazon.com's Mechanical Turk (MTurk), can make causal inference cheap and fast, sometimes the hurdles associated with designing and implementing the actual experiment can stymie researchers. Accomplishing simple randomization is not always easy within standard survey software platforms, and less simple randomization can be even more difficult (or impossible). In particular, complex randomization, such as assigning multiple options from a larger set of options --- \emph{n} choose \emph{p} --- and block randomization are not easy to implement using off-the-shelf survey software. Moreover, standard survey practices such as presenting different information to respondents based on their answers earlier in a survey using a ``lookup table" can be difficult to implement. Yet practices such as blocked randomization are standard in experimental research more broadly and can help researchers to improve statistical efficiency \citep[e.g.,][]{horiuchi2007designing, imai2008misunderstandings, moore2012multivariate}. Ensuring access for all types of researchers conducting survey experiments to these experimental practices is therefore important for political science as a discipline more generally to produce better experimental results.
 
@@ -44,18 +46,73 @@ Simple randomization can easily be accomplished in Qualtrics via the ``Survey Fl
 
 \begin{figure}[!h] \centering 
  \caption{Simple Randomization via Survey Flow} 
-\includegraphics[width=0.6\linewidth]{surveyflow_simple.png}
+\includegraphics[width=0.6\linewidth]{../surveyflow_simple.png}
   \label{fig:surveyflow_simple} 
   \end{figure} 
 
-This is a simple and easily-implemented solution for the researcher, yet it becomes much more difficult as the number of experimental treatments ($n$) increases. For instance, a researcher might want to present many different campaign ads to respondents, or vary a treatment along multiple dimensions. In this world of larger $n$ treatments options, using the built-in survey flow randomizer to add options becomes tedious and prone to human error. In contrast, this sample functionality can be easily accomplished by embedding Javascript in the question text of the survey prior to when the experimental treatments are to appear. Simply put, this allows the user to paste a longer list of $n$ options into a Javascript array which is then randomly shuffled, and then one $p$ option chosen and assigned as treatment.\footnote{To accomplish randomization this method uses what is called a \href{https://en.wikipedia.org/wiki/Fisher\%E2\%80\%93Yates\_shuffle}{Fisher-Yates shuffle}.}
+This is a simple and easily-implemented solution for the researcher, yet it becomes much more difficult as the number of experimental treatments ($n$) increases. For instance, a researcher might want to present many different campaign ads to respondents, or vary a treatment along multiple dimensions. In this world of larger $n$ treatments options, using the built-in survey flow randomizer to add options becomes tedious and prone to human error. In contrast, this sample functionality can be easily accomplished by embedding Javascript in the question text of the survey prior to when the experimental treatments are to appear. Simply put, this allows the user to paste a longer list of $n$ treatment options into a Javascript array which is then randomly shuffled, and then one $p$ option chosen and assigned as the treatment condition.\footnote{To accomplish randomization this method uses what is called a \href{https://en.wikipedia.org/wiki/Fisher\%E2\%80\%93Yates\_shuffle}{Fisher-Yates shuffle}.} The Javascript code for this is below, and is also available publicly on GitHub: ``\href{https://github.com/justindbk/qualtrics-javascript}{Randomize\_QT\_pickone.js}."
+
+%\begin{lstlisting}[language=java, mathescape,backgroundcolor=\color{yellow!10}, frame=tlb]]
+\begin{verbatim}
+Qualtrics.SurveyEngine.addOnload(function(){
+	function shuffle(array){
+		var counter = array.length,
+			temp, index;
+		while (counter > 0){
+			index = Math.floor(Math.random() * counter);
+			counter = counter-1
+			temp = array[counter];
+			array[counter] = array[index];
+			array[index] = temp;
+		}
+		return array;
+	}
+	var myArray=["treatment1", "treatment2", "treatment3",
+	 "treatment4", "treatment5", "treatment6", "treatment7", 
+	 "treatment8", "treatment9", "treatment10", "treatment11", 
+	 "treatment12", "treatment13", "treatment14", "control"];
+	shuffle(myArray);
+	Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
+
+});
+\end{verbatim}
+%\end{lstlisting}
 
 \subsection{Randomization by picking more than one option from many options}
+Sometimes, a researcher might wish to randomize each respondent into more than one condition --- for instance, when having respondents view multiple articles to ascertain the effects of media on political preferences. In this case, the researcher would want to use an $n$ choose $p$ technique to assign possible options to a respondent. The Javascript used in the first example above can be easily adapted to serve this purpose. In this instance, I use the hypothetical example of a researcher wishing to assign a respondent five media articles from a list of fifteen. The Javascript code for this is below, and is also available on GitHub: ``\href{https://github.com/justindbk/qualtrics-javascript}{Randomize\_QT\_pickmany.js}."
+
+\begin{verbatim}
+Qualtrics.SurveyEngine.addOnload(function(){
+	function shuffle(array){
+		var counter = array.length,
+			temp, index;
+		while (counter > 0){
+			index = Math.floor(Math.random() * counter);
+			counter = counter-1
+			temp = array[counter];
+			array[counter] = array[index];
+			array[index] = temp;
+		}
+		return array;
+	}
+	var myArray=["treatment1", "treatment2", "treatment3",
+	 "treatment4", "treatment5", "treatment6", "treatment7", 
+	 "treatment8", "treatment9", "treatment10", "treatment11", 
+	 "treatment12", "treatment13", "treatment14", "treatment15"];
+	shuffle(myArray);
+	Qualtrics.SurveyEngine.setEmbeddedData("first_article",myArray[0]);
+	Qualtrics.SurveyEngine.setEmbeddedData("second_article",myArray[1]);
+	Qualtrics.SurveyEngine.setEmbeddedData("third_article",myArray[2]);
+	Qualtrics.SurveyEngine.setEmbeddedData("fourth_article",myArray[3]);
+	Qualtrics.SurveyEngine.setEmbeddedData("fifth_article",myArray[4]);
+
+});
+\end{verbatim}
 
 \subsection{Lookup tables}
 
-\bibliographystyle{apsr_fs.bst}
-\bibliography{QTjavascript.bib}
+\bibliographystyle{../apsr_fs.bst}
+\bibliography{../QTjavascript.bib}
 
 \end{document}
 
