@@ -1,0 +1,61 @@
+\listfiles
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{setspace}
+\usepackage[table]{xcolor}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage{amsmath}
+%\usepackage{fullpage}
+\usepackage{natbib}
+%\usepackage{xcolor}
+\usepackage{url}
+\usepackage[colorlinks=true, pagebackref=false]{hyperref}
+\hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
+
+\onehalfspacing
+
+\title{Utilizing Javascript in Qualtrics for Survey and Experimental Designs}
+\author{Justin de Benedictis-Kessner}
+\date{This version: \today}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section{Introduction}
+
+Experiments have undeniably increased in their use within political science in the last fifteen years \citep{druckman2006growth}. Especially frequent in this rise of experimental research is the survey experiment. Survey experiments are an effective method for exploiting random assignment to determine accurate causal effects while keeping the costs of research low and the speed with which data can be collected short \citep{mullinix2015generalizability}. Moreover, survey experiments are a research methodology that can be accessible and open to many: students and faculty with varying degrees of resources can often use convenience samples to assess experimental treatment effects without great cost.
+
+Yet while survey experiments, and in particular the use of convenience samples such as Amazon.com's Mechanical Turk (MTurk), can make causal inference cheap and fast, sometimes the hurdles associated with designing and implementing the actual experiment can stymie researchers. Accomplishing simple randomization is not always easy within standard survey software platforms, and less simple randomization can be even more difficult (or impossible). In particular, complex randomization, such as assigning multiple options from a larger set of options --- \emph{n} choose \emph{p} --- and block randomization are not easy to implement using off-the-shelf survey software. Moreover, standard survey practices such as presenting different information to respondents based on their answers earlier in a survey using a ``lookup table" can be difficult to implement. Yet practices such as blocked randomization are standard in experimental research more broadly and can help researchers to improve statistical efficiency \citep[e.g.,][]{horiuchi2007designing, imai2008misunderstandings, moore2012multivariate}. Ensuring access for all types of researchers conducting survey experiments to these experimental practices is therefore important for political science as a discipline more generally to produce better experimental results.
+
+In this short post, I walk through several examples of how survey researchers can use Javascript to accomplish commonly needed survey tasks without advanced knowledge of the Javascript language. Much of this more complex functionality can be accomplished via Javascript embedded into the survey questions in Qualtrics, a common survey software platform.\footnote{The Qualtrics platform is an industry-standard for running online public opinion, marketing, and experimental survey research. Researchers --- in academia and elsewhere ---  rely on the platform to host their surveys usually because they are at institutions or companies that have site licenses, eliminating the cost for individual researchers to use the platform. The platform makes question layout and basic experimental designs easy to implement via a WYSIWYG user interface.}
+
+The first of these is simply randomization: picking one option out of many options, which can be time-consuming and difficult to implement using the built-in Qualtrics randomization functionality when the potential options are very numerous. This method can be extended to accomplish \emph{n} choose \emph{p} randomization -- that is, choosing a set number of options from a larger set of many options --- which is not possible via built-in Qualtrics randomization features. Finally, I demonstrate a technique useful for survey researchers in both experimental and non-experimental settings: using a lookup table to present certain information based on a unique identifier, respondents' panel characteristics, or respondents' answers.
+
+\section{Applications of Javascript in Qualtrics}
+
+\subsection{Randomization by picking one option from many options}
+Simple randomization can easily be accomplished in Qualtrics via the ``Survey Flow" tool of any survey project, which has a built-in ``Randomizer" element that allows the researcher to assign $p$ number of $n$ choices to the respondent. Using embedded data elements, the researcher can then assign a respondent to one of $n$ treatment groups randomly if they check the ``evenly present elements" option (Figure\ref{fig:surveyflow_simple}).
+
+\begin{figure}[!h] \centering 
+ \caption{Simple Randomization via Survey Flow} 
+\includegraphics[width=0.6\linewidth]{surveyflow_simple.png}
+  \label{fig:surveyflow_simple} 
+  \end{figure} 
+
+This is a simple and easily-implemented solution for the researcher, yet it becomes much more difficult as the number of experimental treatments ($n$) increases. For instance, a researcher might want to present many different campaign ads to respondents, or vary a treatment along multiple dimensions. In this world of larger $n$ treatments options, using the built-in survey flow randomizer to add options becomes tedious and prone to human error. In contrast, this sample functionality can be easily accomplished by embedding Javascript in the question text of the survey prior to when the experimental treatments are to appear. Simply put, this allows the user to paste a longer list of $n$ options into a Javascript array which is then randomly shuffled, and then one $p$ option chosen and assigned as treatment.\footnote{To accomplish randomization this method uses what is called a \href{https://en.wikipedia.org/wiki/Fisher\%E2\%80\%93Yates\_shuffle}{Fisher-Yates shuffle}.}
+
+\subsection{Randomization by picking more than one option from many options}
+
+\subsection{Lookup tables}
+
+\bibliographystyle{apsr_fs.bst}
+\bibliography{QTjavascript.bib}
+
+\end{document}
+
