@@ -1,4 +1,4 @@
-# Utilizing Javascript in Qualtrics for Survey and Experimental Designs
+# Utilizing Javascript in Qualtrics for Survey Experimental Designs
 
 In this short port, I walk through several examples of how survey researchers can use Javascript to accomplish commonly needed survey tasks without advanced knowledge of the Javascript language. Much of this more complex functionality can be accomplished via Javascript embedded into the survey questions in Qualtrics, a common survey software platform.
 
