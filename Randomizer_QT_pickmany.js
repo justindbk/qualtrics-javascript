@@ -1,4 +1,4 @@
-/*Qualtrics Javascript to randomly choose 5 treatments from a large array of 15 and then set 5 embedded variables called "first_article", "second_article", etc. to those randomized options*/
+/*Qualtrics Javascript to randomly choose 5 treatments from a large array of 15 and then set 5 embedded variables called "first_article", "second_article", etc. to those randomized options. NOTE: Qualtrics user must create the 'first_article', 'second_article', etc. embedded variables in Survey Flow (and keep values set to blank) before this Javascript appears to respondents.*/
 
 Qualtrics.SurveyEngine.addOnload(function(){
 	function shuffle(array){

@@ -23,7 +23,7 @@
 
 \onehalfspacing
 
-\title{Utilizing Javascript in Qualtrics for Survey and Experimental Designs}
+\title{Utilizing Javascript in Qualtrics for Survey Experimental Designs}
 \author{Justin de Benedictis-Kessner}
 \date{This version: \today}                                           % Activate to display a given date or no date
 
@@ -73,7 +73,6 @@ Qualtrics.SurveyEngine.addOnload(function(){
 	 "treatment12", "treatment13", "treatment14", "control"];
 	shuffle(myArray);
 	Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
-
 });
 \end{verbatim}
 %\end{lstlisting}
@@ -105,11 +104,35 @@ Qualtrics.SurveyEngine.addOnload(function(){
 	Qualtrics.SurveyEngine.setEmbeddedData("third_article",myArray[2]);
 	Qualtrics.SurveyEngine.setEmbeddedData("fourth_article",myArray[3]);
 	Qualtrics.SurveyEngine.setEmbeddedData("fifth_article",myArray[4]);
-
 });
 \end{verbatim}
 
 \subsection{Lookup tables}
+Finally, researchers sometimes wish to look up information about respondents based on previous panel information (for instance, information that corresponds to an ID number). Or perhaps a researcher wanted to present certain information to respondents based on their location and saved information about their representatives in that location. Doing so would require the use of a lookup table --- that is, a table with information that can be queried with a key. Doing this is common in data analysis but is a less common (though still useful) practice in survey research. It can, however, be easily implemented in Qualtrics using a custom Javascript function and a user-inputted set of vectors corresponding to the matched information. Sample code that accomplishes this is below and also on GitHub: ``\href{https://github.com/justindbk/qualtrics-javascript}{Lookup\_QT.js}."
+
+\begin{verbatim}
+Qualtrics.SurveyEngine.addOnload(function()
+{
+	var ID_block_table = {
+  ID: ['1', '2', '3', '4', '5'],
+  block: ['a', 'b', 'c', 'd', 'e']
+};
+function getLookupTableByID(mytable, IDfield, ID, returnfield) {
+  matchindex = null;
+  try {
+    var matchindex = mytable[IDfield].indexOf(ID);
+	var matchreturn = mytable[returnfield][matchindex];
+  } catch (ex) {
+    console.log(ex);
+  }
+  return matchreturn;
+}
+var MID = Qualtrics.SurveyEngine.getEmbeddedData("MID");
+var blockmatch = getLookupTableByID(ID_block_table, "ID", MID, "block");
+	Qualtrics.SurveyEngine.setEmbeddedData('block',blockmatch);
+
+});
+\end{verbatim}
 
 \bibliographystyle{../apsr_fs.bst}
 \bibliography{../QTjavascript.bib}

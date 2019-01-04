@@ -1,4 +1,4 @@
-/*Qualtrics Javascript to choose 1 treatment conditions from a large array of n options for condition and then set an embedded variable called "treatment" to that randomized condition*/
+/*Qualtrics Javascript to choose 1 treatment conditions from a large array of n options for condition and then set an embedded variable called "treatment" to that randomized condition. NOTE: Qualtrics user must create the 'treatment' embedded variable in Survey Flow (and keep value set to blank) before this Javascript appears to respondents.*/
 
 Qualtrics.SurveyEngine.addOnload(function(){
 	function shuffle(array){
