@@ -60,19 +60,20 @@ Qualtrics.SurveyEngine.addOnload(function(){
 			temp, index;
 		while (counter > 0){
 			index = Math.floor(Math.random() * counter);
-			counter = counter-1
+			counter = counter-1;
 			temp = array[counter];
 			array[counter] = array[index];
 			array[index] = temp;
 		}
 		return array;
 	}
-	var myArray=["treatment1", "treatment2", "treatment3",
-	 "treatment4", "treatment5", "treatment6", "treatment7", 
+	var myArray=["treatment1", "treatment2", "treatment3", 
+	"treatment4", "treatment5", "treatment6", "treatment7",
 	 "treatment8", "treatment9", "treatment10", "treatment11", 
 	 "treatment12", "treatment13", "treatment14", "control"];
 	shuffle(myArray);
 	Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
+
 });
 \end{verbatim}
 %\end{lstlisting}
@@ -87,7 +88,7 @@ Qualtrics.SurveyEngine.addOnload(function(){
 			temp, index;
 		while (counter > 0){
 			index = Math.floor(Math.random() * counter);
-			counter = counter-1
+			counter = counter-1;
 			temp = array[counter];
 			array[counter] = array[index];
 			array[index] = temp;
@@ -107,6 +108,44 @@ Qualtrics.SurveyEngine.addOnload(function(){
 });
 \end{verbatim}
 
+\subsection{Block Randomization}
+This Javascript can also be adapted to accomplish block randomization, a useful practice for increasing statistical efficiency in experiments. For instance, a research might want to block-randomize a treatment condition within different categories of respondents --- usually a characteristic that the researcher believes will induce variation in the outcome. To block-randomize within a respondent characteristic, the researcher simply needs to create a question measuring that characteristic, then pull that respondent-entered value into the Javascript, and randomize within different categories. In this case, I wanted to block randomize the treatment used in the first example here by respondents' eye color, which I asked about on my Qualtrics survey (Q56). Javascript code that can be adapted for this purposed is below, and is also available on GitHub: ``\href{https://github.com/justindbk/qualtrics-javascript}{Randomize\_QT\_byblock.js}."
+
+\begin{verbatim}
+Qualtrics.SurveyEngine.addOnload(function(){
+	var eyecolor = "${q://QID56/ChoiceGroup/SelectedChoices}";
+	function shuffle(array){
+		var counter = array.length,
+			temp, index;
+		while (counter > 0){
+			index = Math.floor(Math.random() * counter);
+			counter = counter-1;
+			temp = array[counter];
+			array[counter] = array[index];
+			array[index] = temp;
+		}
+		return array;
+	}
+	var myArray=["treatment1", "treatment2", "treatment3", 
+	"treatment4", "treatment5", "treatment6", "treatment7", 
+	"treatment8", "treatment9", "treatment10", "treatment11", 
+	"treatment12", "treatment13", "treatment14", "control"];
+	if (eyecolor == "Green"){
+		shuffle(myArray);
+		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
+	}
+	if (eyecolor == "Blue"){
+		shuffle(myArray);
+		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
+	}
+	if (eyecolor == "Brown"){
+		shuffle(myArray);
+		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
+	}
+});
+\end{verbatim}
+
+
 \subsection{Lookup tables}
 Finally, researchers sometimes wish to look up information about respondents based on previous panel information (for instance, information that corresponds to an ID number). Or perhaps a researcher wanted to present certain information to respondents based on their location and saved information about their representatives in that location. Doing so would require the use of a lookup table --- that is, a table with information that can be queried with a key. Doing this is common in data analysis but is a less common (though still useful) practice in survey research. It can, however, be easily implemented in Qualtrics using a custom Javascript function and a user-inputted set of vectors corresponding to the matched information. Sample code that accomplishes this is below and also on GitHub: ``\href{https://github.com/justindbk/qualtrics-javascript}{Lookup\_QT.js}."
 
@@ -117,22 +156,23 @@ Qualtrics.SurveyEngine.addOnload(function()
   ID: ['1', '2', '3', '4', '5'],
   block: ['a', 'b', 'c', 'd', 'e']
 };
+
 function getLookupTableByID(mytable, IDfield, ID, returnfield) {
   matchindex = null;
   try {
     var matchindex = mytable[IDfield].indexOf(ID);
-	var matchreturn = mytable[returnfield][matchindex];
+		var matchreturn = mytable[returnfield][matchindex];
   } catch (ex) {
     console.log(ex);
   }
   return matchreturn;
 }
+
 var MID = Qualtrics.SurveyEngine.getEmbeddedData("MID");
+
 var blockmatch = getLookupTableByID(ID_block_table, "ID", MID, "block");
 	Qualtrics.SurveyEngine.setEmbeddedData('block',blockmatch);
-
-});
-\end{verbatim}
+});\end{verbatim}
 
 \bibliographystyle{../apsr_fs.bst}
 \bibliography{../QTjavascript.bib}

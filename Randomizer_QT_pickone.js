@@ -6,7 +6,7 @@ Qualtrics.SurveyEngine.addOnload(function(){
 			temp, index;
 		while (counter > 0){
 			index = Math.floor(Math.random() * counter);
-			counter = counter-1
+			counter = counter-1;
 			temp = array[counter];
 			array[counter] = array[index];
 			array[index] = temp;

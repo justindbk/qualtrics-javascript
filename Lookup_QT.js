@@ -2,7 +2,6 @@
 
 Qualtrics.SurveyEngine.addOnload(function()
 {
-	
 	var ID_block_table = {
   ID: ['1', '2', '3', '4', '5'],
   block: ['a', 'b', 'c', 'd', 'e']
@@ -12,7 +11,7 @@ function getLookupTableByID(mytable, IDfield, ID, returnfield) {
   matchindex = null;
   try {
     var matchindex = mytable[IDfield].indexOf(ID);
-	var matchreturn = mytable[returnfield][matchindex];
+		var matchreturn = mytable[returnfield][matchindex];
   } catch (ex) {
     console.log(ex);
   }
