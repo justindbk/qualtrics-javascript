@@ -3,6 +3,9 @@
 Qualtrics.SurveyEngine.addOnload(function(){
 	var eyecolor = "${q://QID56/ChoiceGroup/SelectedChoices}";
 	
+	var myname = "justindbk"; // replace with your name
+	var mysurvey = "sample_block_randomize"; // replace with a unique name for your survey
+	
 	function shuffle(array){
 		var counter = array.length,
 			temp, index;
@@ -16,17 +19,15 @@ Qualtrics.SurveyEngine.addOnload(function(){
 		return array;
 	}
 	var myArray=["treatment1", "treatment2", "treatment3", "treatment4", "treatment5", "treatment6", "treatment7", "treatment8", "treatment9", "treatment10", "treatment11", "treatment12", "treatment13", "treatment14", "control"];
-	if (eyecolor == "Green"){
-		shuffle(myArray);
-		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
-	}
-	if (eyecolor == "Blue"){
-		shuffle(myArray);
-		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
-	}
-	if (eyecolor == "Brown"){
-		shuffle(myArray);
-		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[0]);
-	}
 
+	let xmlHttp = new XMLHttpRequest();
+		xmlHttp.open('GET', 'https://hitcounter.pythonanywhere.com/count?url='+ myname + '_' + mysurvey + '_' + 'eyes=' + eyecolor, false);
+		xmlHttp.send(null);
+		count = xmlHttp.responseText; // get count of participants within this survey + value of blocking characteristic
+
+		// get treatment condition by counting up within vector of potential conditions by the number of previous respondents in that blocking category
+    var thisindex = count - +Math.floor(count/myArray.length)*myArray.length ;
+
+		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[thisindex]);
+	
 });
