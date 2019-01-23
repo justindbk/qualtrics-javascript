@@ -6,7 +6,8 @@ Qualtrics.SurveyEngine.addOnload(function(){
 	var myname = "justindbk"; // replace with your name
 	var mysurvey = "sample_block_randomize"; // replace with a unique name for your survey
 	
-	function shuffle(array){
+/* Array shuffling no longer used
+function shuffle(array){
 		var counter = array.length,
 			temp, index;
 		while (counter > 0){
@@ -18,6 +19,8 @@ Qualtrics.SurveyEngine.addOnload(function(){
 		}
 		return array;
 	}
+	*/
+	
 	var myArray=["treatment1", "treatment2", "treatment3", "treatment4", "treatment5", "treatment6", "treatment7", "treatment8", "treatment9", "treatment10", "treatment11", "treatment12", "treatment13", "treatment14", "control"];
 
 	let xmlHttp = new XMLHttpRequest();
