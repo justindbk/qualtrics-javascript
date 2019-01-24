@@ -1,36 +1,32 @@
-/*Qualtrics Javascript to randomize, within a block determined by a user-inputted answer to a survey question, 1 treatment condition from a large array of n options for condition and then set an embedded variable called "treatment" to that randomized condition. In this example, this code will block-randomize by eye color, which is a survey question earlier in the survey (before the Javascript and the treatment) NOTE: Qualtrics user must create the survey question for eye color (in this case, it has QID56) and the 'treatment' embedded variable in Survey Flow (and keep value set to blank) before this Javascript appears to respondents.*/
+/*Qualtrics Javascript to randomize, within a block determined by a user-inputted answer to a survey question, 1 treatment condition from an array of n options for condition and then set an embedded variable called "treatment" to that randomized condition. In this example, this code will block-randomize by a survey question earlier in the survey (before the Javascript and the treatment).
+
+NOTE: Qualtrics user must create the survey question to be blocked on (in this case, it has QID56) and the 'treatment' embedded variable in Survey Flow (and keep value set to blank) before this Javascript appears to respondents.
+
+This Javascript makes use of a customizable shiny app that I host on shinyapps.io and can be easily forked for other users from my GitHub.
+
+NOTE: If a user wants to reset a given randomizer for their surveyid, simply go to the following url, replacing "[surveyid]" with the surveyid you want to reset:
+https://jdbk.shinyapps.io/blockrandomize/?surveyid=[surveyid]&reset=1
+*/
 
 Qualtrics.SurveyEngine.addOnload(function(){
-	var eyecolor = "${q://QID56/ChoiceGroup/SelectedChoices}";
+    // replace the QID below here with the ID of variable you want to block on:
+    var blockvar = "${q://QID56/ChoiceGroup/SelectedChoices}"; 
+    // replace with your name + a unique name for your survey:
+    var surveyid = "jdbk-sample_block_randomize"; 
+    // replace with number of experimental conditions to randomize among:
+    var nconditions = "15"; 
 	
-	var myname = "justindbk"; // replace with your name
-	var mysurvey = "sample_block_randomize"; // replace with a unique name for your survey
-	
-/* Array shuffling no longer used
-function shuffle(array){
-		var counter = array.length,
-			temp, index;
-		while (counter > 0){
-			index = Math.floor(Math.random() * counter);
-			counter = counter-1;
-			temp = array[counter];
-			array[counter] = array[index];
-			array[index] = temp;
-		}
-		return array;
-	}
-	*/
-	
-	var myArray=["treatment1", "treatment2", "treatment3", "treatment4", "treatment5", "treatment6", "treatment7", "treatment8", "treatment9", "treatment10", "treatment11", "treatment12", "treatment13", "treatment14", "control"];
+	var myArray=["treatment1", "treatment2", "treatment3",
+	"treatment4", "treatment5", "treatment6", "treatment7", 
+	"treatment8", "treatment9", "treatment10", "treatment11",
+	"treatment12", "treatment13", "treatment14", "control"];
 
 	let xmlHttp = new XMLHttpRequest();
-		xmlHttp.open('GET', 'https://hitcounter.pythonanywhere.com/count?url='+ myname + '_' + mysurvey + '_' + 'eyes=' + eyecolor, false);
+	// the url below hits a shiny app customizable with arguments set above to randomize within blocks
+		xmlHttp.open('GET', 'https://jdbk.shinyapps.io/blockrandomize/?surveyid='+ surveyid + '&blockvalue=' + blockvar + '&nconditions=' + nconditions, false);
 		xmlHttp.send(null);
-		count = xmlHttp.responseText; // get count of participants within this survey + value of blocking characteristic
+		condition_assigned = xmlHttp.responseText; // get condition from randomizer
 
-		// get treatment condition by counting up within vector of potential conditions by the number of previous respondents in that blocking category
-    var thisindex = count - +Math.floor(count/myArray.length)*myArray.length ;
-
-		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[thisindex]);
+		Qualtrics.SurveyEngine.setEmbeddedData("treatment",myArray[condition_assigned]);
 	
 });

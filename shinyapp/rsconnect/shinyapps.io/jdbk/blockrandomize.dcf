@@ -1,0 +1,12 @@
+name: blockrandomize
+title: blockrandomize
+username:
+account: jdbk
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 663933
+bundleId: 1835163
+url: https://jdbk.shinyapps.io/blockrandomize/
+when: 1548364750.35538
+asMultiple: FALSE
+asStatic: FALSE
